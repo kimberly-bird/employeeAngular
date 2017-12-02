@@ -1,11 +1,22 @@
 
-const app = angular.module("EmployeeMgmt", [])
+const app = angular.module("EmployeeMgmt", [require('angular-route')])
 
 app.controller("EmployeeCtrl", function($scope, $http) {
+    
+    app.config(["$routeProvider",
+    function ($routeProvider) {
+        $routeProvider.
+            when("/employees/list", {
+            templateUrl: "app/employees/partials/list.html",
+            controller: "EmployeeListCtrl"
+        })
+    }
+    ])
+
     // empty array for employees
     $scope.employees = []
 
-    //functio nto add new employee objects
+    //function to add new employee objects
     $scope.addEmployee = function () {
         const newE = {
             "firstName": $scope.newEmployeeFirstName,

@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NSS Starter Kit - Angular</title>
+</head>
+
+<body ng-app="EmployeeApp">
+
+    <div ng-view></div>
+
+    <script src="./lib/node_modules/angular/angular.min.js"></script>
+    <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/employees/factories/EmployeeFactory.js"></script>
+    <script src="./app/employees/controllers/EmployeeListCtrl.js"></script>
+    <script src="./app/employees/controllers/EmployeeCreateCtrl.js"></script>
+    <script src="./app/employees/controllers/EmployeeDetailCtrl.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +29,8 @@
     <title>Angular Employees</title>
 </head>
 <body ng-app="EmployeeMgmt">
+    <div ng-view></div>
+
     <header><h1>Angular Employees</h1></header>
 
     <section ng-controller="EmployeeCtrl">
@@ -34,4 +58,4 @@
     <script src="lib/node_modules/angular/angular.min.js"></script>
     <script src="./app/EmployeeCtrl.js"></script>
 </body>
-</html>
+</html> -->
