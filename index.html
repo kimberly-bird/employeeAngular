@@ -10,16 +10,26 @@
     <header><h1>Angular Employees</h1></header>
 
     <section ng-controller="EmployeeCtrl">
-
+        
+        <h2>New Employee</h2>
+        <form ng-submit="addEmployee()">
+            First Name <input type="text" ng-model="newEmployeeFirstName">
+            Last Name <input type="text" ng-model="newEmployeeLastName"><br>
+            <button>Add New Employee</button>
+        </form>
+        
         <div>
-            <ul ng-repeat="currentEmployee in employees | orderBy: 'employmentStart'">
-                <li ng-if="currentEmployee.employmentEnd === null">{{ currentEmployee.firstName }} {{ currentEmployee.lastName }} {{ currentEmployee.employmentStart }}
-                    <button ng-click="fireEmployee(currentEmployee)">Fire Employee</button>
+            <h2>Current Employees</h2>
+            <ul ng-repeat="(key, currentEmployee) in employees">
+                <li ng-if="currentEmployee.employmentEnd === 0">{{ currentEmployee.firstName }} {{ currentEmployee.lastName }} {{ currentEmployee.employmentStart }}
+                    <button ng-click="fireEmployee(currentEmployee, key)">Fire Employee</button>
+                    <button ng-click="deleteEmployee(key)">Delete Employee</button>
                 </li>
             </ul>
         </div>
-
+        
     </section>
+
     
     <script src="lib/node_modules/angular/angular.min.js"></script>
     <script src="./app/EmployeeCtrl.js"></script>

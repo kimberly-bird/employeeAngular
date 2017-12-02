@@ -1,52 +1,59 @@
+
 const app = angular.module("EmployeeMgmt", [])
 
 app.controller("EmployeeCtrl", function($scope, $http) {
-    
-    $scope.employees = [
-        {
-            "id": 1,
-            "firstName": "Erin",
-            "lastName": "Orstrom",
-            "employmentStart": 1512140013765,
-            "employmentEnd": null
-        },
-        {
-            "id": 2,
-            "firstName": "Wayne",
-            "lastName": "Hutchinson",
-            "employmentStart": 1512139999102,
-            "employmentEnd": null
-        },
-        {
-            "id": 3,
-            "firstName": "Sarah",
-            "lastName": "Story",
-            "employmentStart": 1512139999729,
-            "employmentEnd": null
-        },
-        {
-            "id": 4,
-            "firstName": "Sulaiman",
-            "lastName": "Allan",
-            "employmentStart": 1512140294571,
-            "employmentEnd": null
-        },
-        {
-            "id": 5,
-            "firstName": "Ben",
-            "lastName": "Marks",
-            "employmentStart": 1512200192934,
-            "employmentEnd": null
-        }
-    ]
+    // empty array for employees
+    $scope.employees = []
 
-    $scope.fireEmployee = function (currentEmployee) {
-        let employeeIndex = $scope.employees.indexOf(currentEmployee)
-
-        if (employeeIndex >= 0) {
-            $scope.employees.splice(employeeIndex, 1)
-            currentEmployee.employmentEnd = Date.now()
-            console.log(currentEmployee.employmentEnd)
+    //functio nto add new employee objects
+    $scope.addEmployee = function () {
+        const newE = {
+            "firstName": $scope.newEmployeeFirstName,
+            "lastName": $scope.newEmployeeLastName,
+            "employmentStart": Date.now(),
+            "employmentEnd": 0
         }
+
+    // $http to get new employees to firebase
+    $http({
+        method: "POST",
+        url: "https://employees-c9afe.firebaseio.com/employees/.json",        
+        data: JSON.stringify(newE)
+        }).then(() => {
+            $scope.newEmployeeFirstName = ""
+            $scope.newEmployeeLastName = ""
+            getEmployees()
+        })
+    } 
+
+    // getEmployee function to pull from firebase and display to DOM
+    const getEmployees = function () {
+        $http({
+            method: "GET",
+            url: "https://employees-c9afe.firebaseio.com/employees/.json"
+        }).then(response => {
+            $scope.employees = response.data
+        })
     }
+
+    // function to add employee end date to firebase and removes from DOM
+    $scope.fireEmployee = function (currentEmployee, key) {
+        currentEmployee.employmentEnd = Date.now()
+
+        $http
+        .put(`https://employees-c9afe.firebaseio.com/employees/${key}/.json`,
+            currentEmployee
+        )
+        .then(getEmployees)
+    }
+
+    //function to delete employee from firebase and DOM
+    $scope.deleteEmployee = function (key) {
+        $http
+        .delete(`https://employees-c9afe.firebaseio.com/employees/${key}/.json`)
+        .then(getEmployees)
+    }
+
+    getEmployees()
+    
 })
