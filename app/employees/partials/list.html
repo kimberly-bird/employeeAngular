@@ -8,12 +8,17 @@
 </head>
 <body>
         <div>
+            <h2>Filter Employees</h2>
             <input type="text" ng-model="query" />
         </div>
+
+        <br>
         
+        <h3>Employees</h3>
         <div ng-repeat="person in employees | filter: query">
             <a href="#!/employees/{{ person.id }}">{{ person.firstName }} {{ person.lastName }}</a>
         </div>
 
+        <script src="./app/employees/controllers/EmployeeListCtrl.js"></script>
 </body>
 </html>
