@@ -1,17 +1,19 @@
 
-const app = angular.module("EmployeeMgmt", [require('angular-route')])
+const app = angular.module("EmployeeApp", [require('angular-route')]);
 
-app.controller("EmployeeCtrl", function($scope, $http) {
-    
-    app.config(["$routeProvider",
-    function ($routeProvider) {
-        $routeProvider.
-            when("/employees/list", {
+angular.module("EmployeeApp").config(function ($routeProvider) {
+    /**
+     * Configure all Angular application routes here
+     */
+    $routeProvider
+        .when("/employees/list", {
             templateUrl: "app/employees/partials/list.html",
             controller: "EmployeeListCtrl"
         })
-    }
-    ])
+})
+
+app.controller("EmployeeListCtrl", function($scope, $http) {
+    
 
     // empty array for employees
     $scope.employees = []
