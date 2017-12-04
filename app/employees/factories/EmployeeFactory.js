@@ -47,7 +47,7 @@ angular
         "fire": {
             value: function (employee, key) {
                 employee.employmentEnd = Date.now()
-
+                // for Angular, you do not need a .then to fire off the $http request
                 return $http({
                     method: "PUT",
                     url: `https://employees-c9afe.firebaseio.com/employees/${key}/.json`,

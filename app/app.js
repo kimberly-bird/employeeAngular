@@ -1,5 +1,9 @@
 // 3rd party dependency to use 
 const app = angular.module("EmployeeApp", ["ngRoute"])
+// will eventually add "Firebase" here and then move everything here down to app.config.js
+
+// add isAuth authentication promise here - also add to AuthFactory as Object.create "isAuthenticated" - do you have a current user, yes or no? 
+// const isAuth = 
 
 // configure our application - whichModuleYou'reUsing.config. Define the routes for the application in the $routeProvider
 angular.module("EmployeeApp").config(function ($routeProvider) {
@@ -10,7 +14,8 @@ angular.module("EmployeeApp").config(function ($routeProvider) {
     $routeProvider.
     when("/employees/list", {
         templateUrl: "app/employees/partials/list.html",
-        controller: "EmployeeListCtrl"
+        controller: "EmployeeListCtrl",
+        resolve: { isAuth }
     })
     .when('/employees/new', {
         templateUrl: 'app/employees/partials/create.html',
