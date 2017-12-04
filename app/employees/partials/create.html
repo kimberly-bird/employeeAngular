@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-        <section>
-            <div>
-                First name: <input type="text" ng-model="newEmployee.firstName" />
-            </div>
+<a href="#!/employees/list">List Employees</a>
 
-            <div>
-                Last Name: <input type="text" ng-model="newEmployee.lastName" />
-            </div>
-            <button ng-click="hireEmployee()">Hire Employee</button>
-        </section>
+<section>
+    
+    <h2>Add New Employee</h2>
+    <form ng-submit="addEmployee()">
+    
+        <div>
+            First name: <input type="text" ng-model="newEmployee.firstName" />
+        </div>
+        <br>
+        <div>
+            Last Name: <input type="text" ng-model="newEmployee.lastName" />
+        </div>
+        <br>
+        <button ng-click="hireEmployee()">Hire Employee</button>
+    </form>
+    
+    <h2>All Employees</h2>
+    <div ng-repeat="person in employees | filter: {employmentEnd: 0}:true">
+        {{ person.firstName }} {{ person.lastName }}
+    </div>
 
-        <script src="./app/employees/controllers/EmployeeCreateCtrl.js"></script>
-</body>
-</html>
+</section>

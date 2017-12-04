@@ -1,3 +1,5 @@
+// creating an object with an interface - these are global objects that can be injected anywhere else when injected as a parameter in a controller
+
 angular
 .module("EmployeeApp")
 .factory("EmployeeFactory", function ($http) {
@@ -23,6 +25,8 @@ angular
                 return $http({
                     method: "GET",
                     url: `https://employees-c9afe.firebaseio.com/employees/${key}/.json`
+                }).then(response => {
+                    return response.data
                 })
             }
         },
@@ -37,6 +41,25 @@ angular
                         "employmentStart": Date.now(),
                         "employmentEnd": 0
                     }
+                })
+            }
+        },
+        "fire": {
+            value: function (employee, key) {
+                employee.employmentEnd = Date.now()
+
+                return $http({
+                    method: "PUT",
+                    url: `https://employees-c9afe.firebaseio.com/employees/${key}/.json`,
+                    data: employee
+                })
+            }
+        },
+        "delete": {
+            value: function (key) {
+                return $http({
+                    method: "DELETE",
+                    url: `https://employees-c9afe.firebaseio.com/employees/${key}/.json`
                 })
             }
         }

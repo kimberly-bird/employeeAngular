@@ -1,10 +1,12 @@
-
+// 3rd party dependency to use 
 const app = angular.module("EmployeeApp", ["ngRoute"])
 
+// configure our application - whichModuleYou'reUsing.config. Define the routes for the application in the $routeProvider
 angular.module("EmployeeApp").config(function ($routeProvider) {
     /**
-     * Configure all Angular application routes here
+     * Configure all Angular application routes here. #! will route them to the routes below
      */
+    // when this URL is accessed, activate the controller
     $routeProvider.
     when("/employees/list", {
         templateUrl: "app/employees/partials/list.html",
@@ -14,6 +16,7 @@ angular.module("EmployeeApp").config(function ($routeProvider) {
         templateUrl: 'app/employees/partials/create.html',
         controller: 'EmployeeCreateCtrl'
     })
+    // catching URL here after the : and puts it in the variable employeeId
     .when('/employees/detail/:employeeId', { // <-- Magic happens here
         templateUrl: 'app/employees/partials/detail.html',
         controller: 'EmployeeDetailCtrl'

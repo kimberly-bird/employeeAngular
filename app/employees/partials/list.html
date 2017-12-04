@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-        <div>
-            <h2>Filter Employees</h2>
-            <input type="text" ng-model="query" />
-        </div>
+<!-- this is a partial and it is injected into the index.html  -->
+<a href="#!/employees/new">Create Employee</a>
 
-        <br>
-        
-        <h3>Employees</h3>
-        <div ng-repeat="person in employees | filter: query">
-            <a href="#!/employees/{{ person.id }}">{{ person.firstName }} {{ person.lastName }}</a>
-        </div>
+<div>
+    <h2>Filter Employees</h2>
+    <input type="text" ng-model="query" />
+</div>
 
-        <script src="./app/employees/controllers/EmployeeListCtrl.js"></script>
-</body>
-</html>
+<br>
+
+<h3>Employees</h3>
+<div ng-repeat="person in employees | filter: query | filter: {employmentEnd: 0}:true">
+    <a href="#!/employees/detail/{{ person.id }}">{{ person.firstName }} {{ person.lastName }}</a>
+</div>
