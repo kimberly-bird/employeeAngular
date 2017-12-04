@@ -1,6 +1,11 @@
+<a href="#!/employees/list">List Employees</a>
+
 <h1>{{ employee.firstName }} {{ employee.lastName }}</h1>
 
 <h3>Started on {{ employee.employmentStart | date:"fullDate" }}</h3>
+
+<!-- displays fire date, if applicable. THIS ISN'T WORKING ugh. -->
+<h4 ng-if="person.employmentEnd !== 0">Fire Date: {{ employee.employmentEnd | date:"fullDate" }}</h4>
 
 <!-- buttons to fire and delete employee -->
 <button ng-click="fireEmployee()">Fire Employee</button>

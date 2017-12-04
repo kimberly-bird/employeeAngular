@@ -1,4 +1,4 @@
-// creating an object with an interface - these are global objects that can be injected anywhere else when injected as a parameter in a controller
+// creating an object with an interface - these are global objects that can be injected anywhere else when injected as a parameter in a controller (so $scope.list, etc.)
 
 angular
 .module("EmployeeApp")

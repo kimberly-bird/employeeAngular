@@ -12,3 +12,8 @@
 <div ng-repeat="person in employees | filter: query | filter: {employmentEnd: 0}:true">
     <a href="#!/employees/detail/{{ person.id }}">{{ person.firstName }} {{ person.lastName }}</a>
 </div>
+
+<h3>Fired Employees</h3>
+<div ng-repeat="person in employees | filter: query">
+    <a ng-if="person.employmentEnd !== 0" href="#!/employees/detail/{{ person.id }}">{{ person.firstName }} {{ person.lastName }}</a>
+</div>
