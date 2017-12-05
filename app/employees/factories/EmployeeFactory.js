@@ -71,8 +71,8 @@ angular
         "find": {
             value: function (searchString) {
                 const result = this.cache.find(emp => {
-                    return emp.firstName.includes(searchString) ||
-                           emp.lastName.includes(searchString)
+                    return emp.firstName.toLowerCase().includes(searchString) ||
+                           emp.lastName.toLowerCase().includes(searchString)
                 })
                 return result
             }
