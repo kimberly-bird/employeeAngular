@@ -4,19 +4,41 @@
 <head>
   <meta charset="utf-8">
   <title>NSS Starter Kit - Angular</title>
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body ng-app="EmployeeApp">
 
+    <!-- add an ng-include directive and the route URL here with an nav.html partial. NavCtrl has alignment, isAuthenticated, logout, etc.  -->
+    <nav ng-include="'app/navigation/partials/navigation.html'"></nav>
+
     <div ng-view></div>
 
+    <nav ng-include="'app/navigation/partials/footer.html'"></nav>
+    
+    <!-- follow this order when listing scripts -->
+    <!-- angular -->
     <script src="./lib/node_modules/angular/angular.min.js"></script>
+    <!-- firebase -->
+    <script src="./lib/node_modules/firebase/firebase.js"></script>
+    <!-- angular route -->
     <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+    <!-- app.js -->
     <script src="./app/app.js"></script>
+    <!-- configuration -->
+    <script src="./app/app.config.js"></script>
+    
+    <!-- factories -->
+    <script src="./app/auth/factories/AuthFactory.js"></script>
+    <script src="./app/auth/controllers/AuthCtrl.js"></script>
+    
+    <!-- controllers -->
+    <script src="./app/navigation/controllers/NavCtrl.js"></script>
     <script src="./app/employees/factories/EmployeeFactory.js"></script>
     <script src="./app/employees/controllers/EmployeeListCtrl.js"></script>
     <script src="./app/employees/controllers/EmployeeCreateCtrl.js"></script>
     <script src="./app/employees/controllers/EmployeeDetailCtrl.js"></script>
+
 </body>
 </html>
 

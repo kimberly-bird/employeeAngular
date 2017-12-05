@@ -4,6 +4,10 @@ angular
 .module("EmployeeApp")
 .factory("EmployeeFactory", function ($http) {
     return Object.create(null, {
+        "cache": {
+            value: null,
+            writable: true
+        },
         "list": {
             value: function () {
                 return $http({
@@ -13,10 +17,11 @@ angular
                     const data = response.data
 
                     // Make an array of objects so we can use filters
-                    return Object.keys(data).map(key => {
+                    this.cache = Object.keys(data).map(key => {
                         data[key].id = key
                         return data[key]
                     })
+                    return this.cache
                 })
             }
         },
@@ -61,6 +66,15 @@ angular
                     method: "DELETE",
                     url: `https://employees-c9afe.firebaseio.com/employees/${key}/.json`
                 })
+            }
+        },
+        "find": {
+            value: function (searchString) {
+                const result = this.cache.find(emp => {
+                    return emp.firstName.includes(searchString) ||
+                           emp.lastName.includes(searchString)
+                })
+                return result
             }
         }
     })

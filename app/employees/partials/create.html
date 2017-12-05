@@ -16,7 +16,7 @@
         <button ng-click="hireEmployee()">Hire Employee</button>
     </form>
     
-    <h2>All Employees</h2>
+    <h2>Current Employees</h2>
     <div ng-repeat="person in employees | filter: {employmentEnd: 0}:true">
         {{ person.firstName }} {{ person.lastName }}
     </div>

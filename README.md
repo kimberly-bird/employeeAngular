@@ -1,0 +1,1 @@
+-Firebase Config: When pulling this code down, rename the file app.config.js.example to app.config.js and add in your firebase credentials and you will be good to run the project

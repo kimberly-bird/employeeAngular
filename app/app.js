@@ -1,33 +1,24 @@
 // 3rd party dependency to use 
 const app = angular.module("EmployeeApp", ["ngRoute"])
-// will eventually add "Firebase" here and then move everything here down to app.config.js
 
-// add isAuth authentication promise here - also add to AuthFactory as Object.create "isAuthenticated" - do you have a current user, yes or no? 
-// const isAuth = 
-
-// configure our application - whichModuleYou'reUsing.config. Define the routes for the application in the $routeProvider
-angular.module("EmployeeApp").config(function ($routeProvider) {
-    /**
-     * Configure all Angular application routes here. #! will route them to the routes below
-     */
-    // when this URL is accessed, activate the controller
-    $routeProvider.
-    when("/employees/list", {
-        templateUrl: "app/employees/partials/list.html",
-        controller: "EmployeeListCtrl",
-        resolve: { isAuth }
-    })
-    .when('/employees/new', {
-        templateUrl: 'app/employees/partials/create.html',
-        controller: 'EmployeeCreateCtrl'
-    })
-    // catching URL here after the : and puts it in the variable employeeId
-    .when('/employees/detail/:employeeId', { // <-- Magic happens here
-        templateUrl: 'app/employees/partials/detail.html',
-        controller: 'EmployeeDetailCtrl'
-    })
-    .otherwise('/employees/list')
-})
+// angular.module("EmployeeApp").config(function ($routeProvider) {
+    
+//     $routeProvider.
+//     when("/employees/list", {
+//         templateUrl: "app/employees/partials/list.html",
+//         controller: "EmployeeListCtrl",
+//     })
+//     .when('/employees/new', {
+//         templateUrl: 'app/employees/partials/create.html',
+//         controller: 'EmployeeCreateCtrl'
+//     })
+    
+//     .when('/employees/detail/:employeeId', { // <-- Magic happens here
+//         templateUrl: 'app/employees/partials/detail.html',
+//         controller: 'EmployeeDetailCtrl'
+//     })
+//     .otherwise('/employees/list')
+// })
 
 // angular.module("EmployeeApp").config(function ($routeProvider) {
 //     /**

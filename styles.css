@@ -1,0 +1,19 @@
+.align-right {
+    align-content: right;
+}
+
+li {
+    display: inline;
+    padding: 10px;
+}
+
+nav {
+    background-color: rosybrown;
+    padding: 15px;
+    
+}
+
+footer {
+    background-color: rosybrown;
+    padding: 15px;
+}
